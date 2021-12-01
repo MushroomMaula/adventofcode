@@ -1,5 +1,5 @@
 # Advent of Code ⭐️
-[![Stars collected](https://shields.io/static/v1?label=stars%20collected&message=72&color=yellow)]()
+[![Stars collected](https://shields.io/static/v1?label=stars%20collected&message=0&color=yellow)]()
 [![codecov](https://codecov.io/gh/marcelblijleven/adventofcode/branch/master/graph/badge.svg?token=jZ2TgfyltM)](https://codecov.io/gh/marcelblijleven/adventofcode)
 [![tests](https://github.com/marcelblijleven/adventofcode/actions/workflows/tests.yaml/badge.svg)](https://github.com/marcelblijleven/adventofcode)
 [![version](https://img.shields.io/github/v/release/marcelblijleven/adventofcode.svg)](https://github.com/marcelblijleven/adventofcode/releases)
@@ -22,44 +22,6 @@ Collection of my Advent of Code solutions in an overkill project setup 👻🎄.
 
 <!-- start completed section -->
 ## Completed ⭐️
-### 2015
-- day 01: part one ⭐️, part two ⭐️
-- day 02: part one ⭐️, part two ⭐️
-- day 03: part one ⭐️, part two ⭐️
-- day 04: part one ⭐️, part two ⭐️
-- day 05: part one ⭐️, part two ⭐️
-- day 06: part one ⭐️, part two ⭐️
-- day 07: part one ⭐️, part two ⭐️
-- day 08: part one ⭐️, part two ⭐️
-- day 09: part one ⭐️, part two ⭐️
-- day 10: part one ⭐️, part two ⭐️
-- day 11: part one ⭐️, part two ⭐️
-- day 12: part one ⭐️, part two ⭐️
-- day 13: part one ⭐️, part two ⭐️
-- day 14: part one ⭐️, part two ⭐️
-- day 15: part one ⭐️, part two ⭐️
-- day 16: part one ⭐️, part two ⭐️
-- day 17: part one ⭐️, part two ⭐️
-- day 18: part one ⭐️, part two ⭐️
-- day 19: part one ⭐️, part two ⭐️
-- day 20: part one ⭐️, part two ⭐️
-- day 21: part one ⭐️, part two ⭐️
-- day 22: part one ⭐️, part two ⭐️
-- day 23: part one ⭐️, part two ⭐️
-- day 24: part one ⭐️, part two ⭐️
-- day 25: part one ⭐️, part two ⭐️
-### 2020
-- day 01: part one ⭐️, part two ⭐️
-- day 02: part one ⭐️, part two ⭐️
-- day 03: part one ⭐️, part two ⭐️
-- day 04: part one ⭐️, part two ⭐️
-- day 05: part one ⭐️, part two ⭐️
-- day 06: part one ⭐️, part two ⭐️
-- day 07: part one ⭐️, part two ⭐️
-- day 08: part one ⭐️, part two ⭐️
-- day 09: part one ⭐️, part two ⭐️
-- day 10: part one ⭐️, part two ⭐️
-- day 11: part one ⭐️, part two ⭐️
 
 <!-- end completed section -->
 
