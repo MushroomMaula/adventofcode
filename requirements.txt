@@ -1,1 +1,7 @@
 rich==10.14.0
+
+adventofcode~=0.0.0
+requests~=2.26.0
+toolbelt~=0.0.5
+pytest~=6.2.5
+setuptools~=58.4.0
