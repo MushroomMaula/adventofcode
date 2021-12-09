@@ -66,34 +66,7 @@ def flatten(values: List[List[T]]) -> Iterator[T]:
 def find_minima(heightmap: List[List[Point]]) -> List[Point]:
     return [p for p in flatten(heightmap) if p.min_neighbor is None]
 
-# def minimal_neighbor(heightmap: List[List[int]], position: Tuple[int, int]):
-#     x, y = position
-#     values = heightmap[y]
-#     left = math.inf
-#     right = math.inf
-#     above = math.inf
-#     below = math.inf
-#     neighbors = []
-#     if 0 < x:
-#         left = values[x - 1]
-#         neighbors.append((left, (x-1, y)))
-#     if x < len(values) - 1:
-#         right = values[x + 1]
-#         neighbors.append((right, (x + 1, y)))
-#
-#     if 0 < y:
-#         above = heightmap[y - 1][x]
-#         neighbors.append((above, (x, y-1)))
-#     if y < len(heightmap) - 1:
-#         below = heightmap[y + 1][x]
-#         neighbors.append((below, (x, y + 1)))
-#
-#     return min(neighbors, key=operator.itemgetter(0))
 
-# Idea we start from every point that has 8 as the value
-# as these are the highest points possible in a basin
-# then we descent to the minimum until we have found
-# the true minimum
 def find_basins(heightmap: List[List[Point]]):
     to_visit = set([p for p in flatten(heightmap) if p.value != 9])
 
