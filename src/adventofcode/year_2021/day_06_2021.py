@@ -1,12 +1,5 @@
-import math
-from collections import namedtuple
-from copy import copy
 from decimal import ROUND_HALF_UP, Decimal
 from typing import List
-
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 from adventofcode.util.exceptions import SolutionNotFoundException
 from adventofcode.util.helpers import solution_timer
@@ -65,7 +58,8 @@ def part_one(input_data: List[str]):
 @solution_timer(2021, 6, 2)
 def part_two(input_data: List[str]):
     fish = parse_inputs(input_data)
-    answer = len(simulate(fish, 256))
+    answer = len(simulate(fish, 125))
+    answer = 0
     if not answer:
         raise SolutionNotFoundException(2021, 6, 2)
 
