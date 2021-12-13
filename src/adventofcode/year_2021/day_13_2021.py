@@ -73,7 +73,7 @@ class Paper:
     def __repr__(self):
         rows = [[' ' for _ in range(self.max_x + 1)] for _ in range(self.max_y + 1)]
         for (x, y) in self.dots:
-            rows[y][x] = '#'
+            rows[y][x] = '█'
         return '\n'.join(''.join(v for v in row) for row in rows) + '\n'
 
 
