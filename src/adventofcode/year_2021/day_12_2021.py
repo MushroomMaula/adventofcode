@@ -1,8 +1,6 @@
 from collections import defaultdict, deque
 from copy import copy
-from typing import List, Tuple, TypeVar, Hashable, Set, DefaultDict, Generic, Optional
-
-from rich.pretty import pprint
+from typing import List, Tuple, TypeVar, Hashable, Set, DefaultDict, Generic
 
 from adventofcode.util.exceptions import SolutionNotFoundException
 from adventofcode.util.helpers import solution_timer
@@ -157,7 +155,6 @@ def part_one(input_data: List[str]):
     # graph.simplify()
     graph.find_paths()
     answer = len(graph.paths)
-    pprint(graph.paths)
     if not answer:
         raise SolutionNotFoundException(2021, 12, 1)
 
@@ -170,7 +167,6 @@ def part_two(input_data: List[str]):
     graph.duplicate_small_caves()
     graph.find_paths()
     answer = len(graph.paths)
-    pprint(graph.paths)
 
     if not answer:
         raise SolutionNotFoundException(2021, 12, 2)
