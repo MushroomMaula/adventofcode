@@ -69,10 +69,7 @@ def polymerize_fast(template: str, rules: Dict[str, str], steps=10):
                 # We also have to remove the old neighbors
                 added_neighbors[rule] -= neighbors[rule]
 
-
-        neighbors.update(added_neighbors)
-        # removes all negative elements e.g. neighbors that don't exist anymore
-        neighbors._keep_positive()
+        neighbors += added_neighbors
 
     return counter.most_common(1)[0][1] - counter.most_common()[-1][1]
 
