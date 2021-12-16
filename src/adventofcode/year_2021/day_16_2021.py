@@ -1,31 +1,45 @@
-from collections import deque
 import enum
-from typing import List, Optional, Literal
+from typing import List
 
 from adventofcode.util.exceptions import SolutionNotFoundException
 from adventofcode.util.helpers import solution_timer
 from adventofcode.util.input_helpers import get_input_for_day
 
 
-class Tokens(enum.Enum):
-   LITERAL = '100'
-   SUM = '000'
-   PRODUCT = '001'
-   MIN = '010'
-   MAX = '011'
-   GREATER_THAN = '101'
-   LESS_THAN = '110'
-   EQUAL = '111'
+class TypeID(str, enum.Enum):
+    LITERAL = '100'
+    SUM = '000'
+    PRODUCT = '001'
+    MIN = '010'
+    MAX = '011'
+    GREATER_THAN = '101'
+    LESS_THAN = '110'
+    EQUAL = '111'
+
+
+class InvalidTypeException(Exception):
+    pass
+
+
+class InvalidLengthTypeException(Exception):
+    pass
 
 
 class Packet:
 
     @staticmethod
     def to_binary(n: int, padding: int = 4):
+        """
+        Represents the value in binary format with 0 padding
+        """
         return bin(n)[2:].zfill(padding)
 
     @classmethod
     def from_hex(cls, values: str):
+        """
+        Interprets the value as a hexadecimal string and creates a binary
+        representation, that is feed into the packet
+        """
         content = []
         for char in values:
             content.append(int(char, 16))
@@ -35,21 +49,10 @@ class Packet:
     def __init__(self, content: str):
         self.position = 0
         self.content = content
-        self._versions = []
-        self._finished = False
+        self.version_sum = 0
         self.read = 0
 
-    @property
-    def finished(self):
-        return self._finished
-
-    def version_sum(self) -> int:
-        return sum(map(lambda x: int(x, 2), self._versions))
-
-    def set_position(self, pos: int):
-        self.position = pos
-
-    def rest(self):
+    def not_read(self):
         return self.content[self.position:]
 
     def eat(self, n: int) -> str:
@@ -60,51 +63,55 @@ class Packet:
 
     def parse(self) -> int:
         version = self.eat(3)
-        self._versions.append(version)
         type_id = self.eat(3)
-        if type_id == Tokens.LITERAL.value:
+        self.version_sum += int(version, 2)
+
+        if type_id == TypeID.LITERAL:
             value = self._parse_literal()
         else:
             values = self._parse_operator()
 
-            if type_id == Tokens.SUM.value:
+            if type_id == TypeID.SUM:
                 value = sum(values)
 
-            elif type_id == Tokens.PRODUCT.value:
+            elif type_id == TypeID.PRODUCT:
                 value = 1
                 for val in values:
                     value *= val
 
-            elif type_id == Tokens.MIN.value:
+            elif type_id == TypeID.MIN:
                 value = min(values)
 
-            elif type_id == Tokens.MAX.value:
+            elif type_id == TypeID.MAX:
                 value = max(values)
 
-            elif type_id == Tokens.GREATER_THAN.value:
+            elif type_id == TypeID.GREATER_THAN:
                 assert len(values) == 2
                 value = values[0] > values[1]
 
-            elif type_id == Tokens.LESS_THAN.value:
+            elif type_id == TypeID.LESS_THAN:
                 assert len(values) == 2
                 value = values[0] < values[1]
-            elif type_id == Tokens.EQUAL.value:
+
+            elif type_id == TypeID.EQUAL:
                 assert len(values) == 2
                 value = values[0] == values[1]
+            else:
+                raise InvalidTypeException(f"{type_id} is not a valid type ID.")
 
-        self._finished = True
         return value
 
     def _parse_literal(self) -> int:
         literals = []
         # Take chunks of fives
-        for _ in range(len(self.rest()) // 5):
+        chunks = len(self.not_read()) // 5
+        for _ in range(chunks):
             literal = self.eat(5)
             # we ignore the first bit
             _id = literal[0]
             literals.append(literal[1:])
 
-            # This was the last literal value in the package
+            # Indicates that this was the last literal value in the packet, and we are finished with reading
             if _id == '0':
                 break
 
@@ -120,10 +127,15 @@ class Packet:
             num_of_subpackets = self.eat(11)
             n = int(num_of_subpackets, 2)
             value = self._parse_subpackets(n)
+        else:
+            raise InvalidLengthTypeException(f"{length_type_id} is not a valid length type ID.")
 
         return value
 
-    def _parse_subpackets_by_bits(self, n) -> List[int]:
+    def _parse_subpackets_by_bits(self, n: int) -> List[int]:
+        """
+        Read n bits and parse these as subpacktes
+        """
         results = []
         size = self.read + n
         while self.read != size:
@@ -131,7 +143,10 @@ class Packet:
 
         return results
 
-    def _parse_subpackets(self, n) -> List[int]:
+    def _parse_subpackets(self, n: int) -> List[int]:
+        """
+        Reads n subpackets
+        """
         results = []
         for _ in range(n):
             results.append(self.parse())
@@ -152,7 +167,7 @@ class Packet:
 def part_one(input_data: List[str]):
     p = Packet.from_hex(input_data[0])
     p.parse()
-    answer = p.version_sum()
+    answer = p.version_sum
 
     if not answer:
         raise SolutionNotFoundException(2021, 16, 1)
