@@ -72,11 +72,11 @@ def part_one(input_data: List[str]):
     last = -math.inf
     # Absolutely no idea why this upper bound for the velocity works
     # Pretty sure there is a mathematical way to figure out the highest
-    # velocity that will not overshoot by I don't know how.
+    # velocity that will not overshoot but I don't know how.
     N = 500
     # We need to make at least lower_x steps to be in the x boundaries
     # therefore our velocity has to be at least lower_x in order for our
-    # maximum to be above the target
+    # maximum to be above the target.
     # We just assume that we have done enough steps with our x velocity so that
     # it is zero, but above the target
     for i in range(lower_x, N):
