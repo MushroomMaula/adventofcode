@@ -17,7 +17,12 @@ def _download_input(year: int, day: int, session: str) -> bytes:
     """
     cookies = {'session': session}
     url = f'https://adventofcode.com/{year}/day/{day}/input'
-    resp = requests.get(url, cookies=cookies)
+    resp = requests.get(
+        url,
+        cookies=cookies,
+        headers={
+            "User-Agent": "https://github.com/MushroomMaula/adventofcode"
+        })
     resp.raise_for_status()
     return resp.content  # type: ignore
 
