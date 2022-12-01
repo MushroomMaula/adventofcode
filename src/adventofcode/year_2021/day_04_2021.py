@@ -99,7 +99,7 @@ def parse_input(input_data: List[str]) -> Tuple[List[int], List[Board]]:
     return numbers, boards
 
 
-def get_first_winning_board(numbers: list[int], boards: List[Board]):
+def get_first_winning_board(numbers: List[int], boards: List[Board]):
     for num in numbers:
         for board in boards:
             if board.is_win(num):
@@ -107,7 +107,7 @@ def get_first_winning_board(numbers: list[int], boards: List[Board]):
                 return answer
 
 
-def get_last_winning_board(numbers: list[int], boards: List[Board]) -> int:
+def get_last_winning_board(numbers: List[int], boards: List[Board]) -> int:
     last_winning_score = None
     for num in numbers:
         for board in boards:

@@ -1,7 +1,7 @@
 import os
 import sys
 from argparse import ArgumentParser
-from typing import List
+from typing import List, Tuple
 
 from requests import HTTPError  # noqa
 
@@ -63,7 +63,7 @@ def write_template(filename: str, template: str):
         f.write(template)
 
 
-def _parse_args(args: List[str]) -> tuple[int, int]:
+def _parse_args(args: List[str]) -> Tuple[int, int]:
     parser = ArgumentParser(description='Add a day')
     parser.add_argument('year', type=int, help='The year of the exercise')
     parser.add_argument('day', type=int, help='The day of the exercise')
